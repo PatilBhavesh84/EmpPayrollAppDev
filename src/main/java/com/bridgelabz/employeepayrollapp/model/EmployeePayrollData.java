@@ -41,4 +41,3 @@ public class EmployeePayrollData {
         this.employeeID = employeeID;
     }
 }
-
