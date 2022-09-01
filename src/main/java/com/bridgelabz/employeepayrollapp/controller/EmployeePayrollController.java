@@ -44,7 +44,7 @@ public class EmployeePayrollController {
     }
     //localhost:8080/employeepayrollservice/update/2
     @PutMapping("/update/{empId}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,@Valid @RequestBody EmployeePayrollDTO empPayrollDTO){
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@Valid @PathVariable("empId") int empId,@RequestBody EmployeePayrollDTO empPayrollDTO){
         EmployeePayrollData empData=null;
         empData = employeePayrollService.updateEmployeePayrollData(empId, empPayrollDTO);
         ResponseDTO respDTO=new ResponseDTO("Updated Employee Payroll Data Successfully", empData);

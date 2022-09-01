@@ -5,6 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
+//use Lombook library for logging i.e Slf4j
 @SpringBootApplication
 @Slf4j
 public class EmployeePayrollAppApplication {
