@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,12 +31,12 @@ public class EmployeePayrollController {
     public ResponseEntity<ResponseDTO> getEmployeePayrollData(@PathVariable(value = "empId") int empId) {
         EmployeePayrollData employeePayrollData = null;
         employeePayrollData=employeePayrollService.getEmployeePayrollDataById(empId);
-        ResponseDTO respDTO = new ResponseDTO("Get Call Success for Id successful ", employeePayrollData);
+        ResponseDTO respDTO = new ResponseDTO("Get Call Success for id successful ", employeePayrollData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
     //localhost:8080/employeepayrollservice/create
     @PostMapping("/create")
-    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@RequestBody EmployeePayrollDTO empPayrollDTO) {
+    public ResponseEntity<ResponseDTO> addEmployeePayrollData(@Valid @RequestBody EmployeePayrollDTO empPayrollDTO) {
         EmployeePayrollData employeePayrollData = null;
         employeePayrollData = employeePayrollService.createEmployeePayrollData(empPayrollDTO);
         ResponseDTO responseDTO = new ResponseDTO("Created employee Payroll data successfully", employeePayrollData);
@@ -43,7 +44,7 @@ public class EmployeePayrollController {
     }
     //localhost:8080/employeepayrollservice/update/2
     @PutMapping("/update/{empId}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,@RequestBody EmployeePayrollDTO empPayrollDTO){
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,@Valid @RequestBody EmployeePayrollDTO empPayrollDTO){
         EmployeePayrollData empData=null;
         empData = employeePayrollService.updateEmployeePayrollData(empId, empPayrollDTO);
         ResponseDTO respDTO=new ResponseDTO("Updated Employee Payroll Data Successfully", empData);
