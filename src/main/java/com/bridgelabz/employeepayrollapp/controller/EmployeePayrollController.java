@@ -18,7 +18,6 @@ public class EmployeePayrollController {
 
     @Autowired
     private IEmployeePayrollService employeePayrollService;
-    //localhost:8080/employeepayrollservice/get
     @RequestMapping(value = {"", "/", "/get"})
     public ResponseEntity<ResponseDTO> getEmployeePayrollData() {
         List<EmployeePayrollData> employeePayrollDataList = null;
@@ -26,7 +25,7 @@ public class EmployeePayrollController {
         ResponseDTO respDTO = new ResponseDTO("Get call Success", employeePayrollDataList);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
-    //localhost:8080/employeepayrollservice/get/1
+
     @GetMapping("/get/{empId}")
     public ResponseEntity<ResponseDTO> getEmployeePayrollData(@PathVariable(value = "empId") int empId) {
         EmployeePayrollData employeePayrollData = null;
@@ -34,7 +33,7 @@ public class EmployeePayrollController {
         ResponseDTO respDTO = new ResponseDTO("Get Call Success for id successful ", employeePayrollData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus.OK);
     }
-    //localhost:8080/employeepayrollservice/create
+
     @PostMapping("/create")
     public ResponseEntity<ResponseDTO> addEmployeePayrollData(@Valid @RequestBody EmployeePayrollDTO empPayrollDTO) {
         EmployeePayrollData employeePayrollData = null;
@@ -42,15 +41,16 @@ public class EmployeePayrollController {
         ResponseDTO responseDTO = new ResponseDTO("Created employee Payroll data successfully", employeePayrollData);
         return new ResponseEntity<>(responseDTO, HttpStatus.OK);
     }
-    //localhost:8080/employeepayrollservice/update/2
+
     @PutMapping("/update/{empId}")
-    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@Valid @PathVariable("empId") int empId,@RequestBody EmployeePayrollDTO empPayrollDTO){
+    public ResponseEntity<ResponseDTO> updateEmployeePayrollData(@PathVariable("empId") int empId,
+                                                                 @Valid@RequestBody EmployeePayrollDTO empPayrollDTO){
         EmployeePayrollData empData=null;
         empData = employeePayrollService.updateEmployeePayrollData(empId, empPayrollDTO);
         ResponseDTO respDTO=new ResponseDTO("Updated Employee Payroll Data Successfully", empData);
         return new ResponseEntity<ResponseDTO>(respDTO, HttpStatus. OK);
     }
-    //localhost:8080/employeepayrollservice/delete/1
+
     @DeleteMapping("/delete/{empId}")
     public ResponseEntity<ResponseDTO> deleteEmployeePayrollData(@PathVariable("empId") int empId) {
         employeePayrollService.deleteEmployeePayrollData(empId);
